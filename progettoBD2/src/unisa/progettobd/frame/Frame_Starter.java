@@ -52,7 +52,7 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 
 	}
-
+/**
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String toDo = e.getActionCommand();
@@ -88,5 +88,11 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		}
 
 	}
+**/
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }
