@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jd-intellij">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/jd-intellij/lib/jd-intellij.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
