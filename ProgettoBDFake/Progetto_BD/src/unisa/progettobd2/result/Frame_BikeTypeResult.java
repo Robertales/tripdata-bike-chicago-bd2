@@ -23,7 +23,7 @@ public class Frame_BikeTypeResult extends JFrame {
     public Frame_BikeTypeResult(String bikeType) {
         super();
         Boolean found = false;
-        String[] colNames = {"ID", "Type", "Started at", "Start Station Name", "Ended at", "End Station Name", "Member"};
+        String[] colNames = {"ID", "Type", "Month", "DayStart", "HourStart", "Start Station Name", "DayEnd", "HourEnd", "End Station Name", "Member"};
 
         DefaultTableModel dtm = new DefaultTableModel();
         dtm.setColumnIdentifiers(colNames);
@@ -36,16 +36,6 @@ public class Frame_BikeTypeResult extends JFrame {
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         add(scrollText);
 
-        /*MongoCollection<Document> coll = null;
-        if (tipo.equals("Weekday")) {
-
-            coll = DatabaseManager.getWeekday();
-
-        } else if (tipo.equals("Weekend")) {
-
-            coll = DatabaseManager.getWeekend();
-
-        }*/
         MongoCollection<Document> coll = DatabaseManager.getBike();
         Document docQuery = new Document().append("rideableType", bikeType);
         coll.createIndex(Indexes.ascending("rideableType"));
@@ -55,9 +45,8 @@ public class Frame_BikeTypeResult extends JFrame {
             for (Document temp : results) {
                 found = true;
                 c++;
-                dtm.addRow(new Object[]{temp.getInteger("id"), temp.getString("rideableType"),
-                        temp.getString("startedAt"), temp.getString("startStationName"), temp.getString("endedAt"),
-                        temp.getString("endStationName"), temp.getString("memberCasual")});
+                dtm.addRow(new Object[]{temp.getInteger("id"), temp.getString("rideableType"), temp.getInteger("month"), temp.getInteger("dayStart"), temp.getString("hourStart"),
+                		temp.getString("startStationName"), temp.getInteger("dayEnd"), temp.getString("hourEnd"), temp.getString("endStationName"), temp.getString("memberCasual")});
             }
 
             if (!found)

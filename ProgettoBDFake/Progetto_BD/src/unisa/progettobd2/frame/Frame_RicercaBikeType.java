@@ -26,7 +26,6 @@ public class Frame_RicercaBikeType extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JComboBox comboBikeType;
-    private JRadioButton radioWeekday, radioWeekend;
 
     public Frame_RicercaBikeType() {
         super();
@@ -36,21 +35,6 @@ public class Frame_RicercaBikeType extends JFrame implements ActionListener {
         JPanel contentPane = new JPanel();
         contentPane.setBorder(BorderFactory.createEmptyBorder(10, 60, 10, 60));
         contentPane.setLayout(new GridLayout(4, 0, 13, 13));
-
-        JPanel radioPanel = new JPanel();
-        radioPanel.setLayout(new GridLayout(0, 2));
-
-        radioWeekday = new JRadioButton("Weekday");
-        radioWeekday.setSelected(true);
-
-        radioWeekend = new JRadioButton("Weekend");
-
-        ButtonGroup radioGroup = new ButtonGroup();
-        radioGroup.add(radioWeekday);
-        radioGroup.add(radioWeekend);
-
-        radioPanel.add(radioWeekday);
-        radioPanel.add(radioWeekend);
 
         // ----------------------------------------------------------
 
@@ -65,7 +49,7 @@ public class Frame_RicercaBikeType extends JFrame implements ActionListener {
         }
         comboBikeType.setSelectedIndex(0);
 
-        secondPanel.add(new JLabel("Seleziona il tipo di infortunio da cercare:"));
+        secondPanel.add(new JLabel("Seleziona il tipo di bicicletta:"));
         secondPanel.add(comboBikeType);
 
         // ----------------------------------------------------------------------------------
@@ -73,7 +57,6 @@ public class Frame_RicercaBikeType extends JFrame implements ActionListener {
         buttVai.addActionListener(this);
 
         contentPane.add(new JLabel("Seleziona il tipo di ricerca:"));
-        contentPane.add(radioPanel);
         
         contentPane.add(secondPanel);
         contentPane.add(buttVai);
