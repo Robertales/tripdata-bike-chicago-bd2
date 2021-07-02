@@ -102,7 +102,12 @@ public class Frame_Starter extends JFrame implements ActionListener {
 			frameInjury.setResizable(true);
 			frameInjury.setVisible(true);
 		}
-		
+
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+
+	}
 }
