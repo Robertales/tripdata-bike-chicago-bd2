@@ -1,0 +1,10 @@
+1 bottone: combo box mese, combo box giorno, combo box tipo di bike
+2 bottone: radio button membro o non, combo box mese
+3 bottone: checkbox Mese, combobox mese,
+    	   checkbox giorno, combobox giorno,
+	   checkbox hour, combobox hour da e combobox hour a,
+	   checkbox stazione partenza, combobox stazione partenza,
+	   checkbox stazione arrivo, combobox stazione arrivo,
+	   checkbox membro, combobox memrbro/casual
+   	    
+4 bottone: grafico per ogni mese, grafico orario, grafico per ogni tipo
