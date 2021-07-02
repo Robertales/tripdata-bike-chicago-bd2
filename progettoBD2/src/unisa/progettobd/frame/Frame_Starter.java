@@ -17,8 +17,8 @@ public class Frame_Starter extends JFrame implements ActionListener {
 	public Frame_Starter() {
 		super();
 
-		JButton buttRicercaAteneo = new JButton("Ricerca per infortunio");
-		buttRicercaAteneo.setActionCommand("infortunio");
+		JButton buttRicercaAteneo = new JButton("Ricerca per tipo di bicicletta");
+		buttRicercaAteneo.setActionCommand("bikeType");
 		buttRicercaAteneo.addActionListener(this);
 
 		JButton buttRicercaAnno = new JButton("Ricerca per anno");
@@ -47,7 +47,7 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		contentPane.setLayout(new BorderLayout());
 
 		contentPane.add(panel, BorderLayout.CENTER);
-		contentPane.add(new JLabel("Progetto BD2 - Incidenti a Monroe 2003-2015"), BorderLayout.PAGE_START);
+		contentPane.add(new JLabel("Progetto BD2 - Bike Dataset"), BorderLayout.PAGE_START);
 
 		setContentPane(contentPane);
 
@@ -88,11 +88,26 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		}
 
 	}
-**/
+	**/
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String toDo = e.getActionCommand();
+
+		if (toDo.equals("bikeType")) {
+
+			Frame_RicercaBikeType frameInjury = new Frame_RicercaBikeType();
+			frameInjury.setSize(400, 300);
+			frameInjury.setTitle("Ricerca per tipo di bicicletta");
+			frameInjury.setResizable(true);
+			frameInjury.setVisible(true);
+		}
+
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
