@@ -11,6 +11,9 @@ public abstract class DatabaseManager {
 		return getDB().getCollection(bike);
 	}
 
+	
+	
+	
 	public static void close() {
 		if (client != null) client.close();
 		client = null;
@@ -24,5 +27,7 @@ public abstract class DatabaseManager {
 	private static MongoClient client = null;
 	private static final String dbName = "databaseBD2Bike";
 	private static final String bike = "bike";
+
+
 }
 

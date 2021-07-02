@@ -21,9 +21,9 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		buttRicercaAteneo.setActionCommand("bikeType");
 		buttRicercaAteneo.addActionListener(this);
 
-		JButton buttRicercaAnno = new JButton("Ricerca per anno");
-		buttRicercaAnno.setActionCommand("anno");
-		buttRicercaAnno.addActionListener(this);
+		JButton buttRicercaMese = new JButton("Ricerca per Mese");
+		buttRicercaMese.setActionCommand("mese");
+		buttRicercaMese.addActionListener(this);
 
 		JButton buttGrafici = new JButton("Aggregazione");
 		buttGrafici.setActionCommand("aggregazione");
@@ -39,7 +39,7 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		panel.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
 
 		panel.add(buttRicercaAteneo);
-		panel.add(buttRicercaAnno);
+		panel.add(buttRicercaMese);
 		panel.add(buttGrafici);
 		panel.add(buttNewQuery);
 
@@ -101,8 +101,14 @@ public class Frame_Starter extends JFrame implements ActionListener {
 			frameInjury.setTitle("Ricerca per tipo di bicicletta");
 			frameInjury.setResizable(true);
 			frameInjury.setVisible(true);
-		}
-		
-	}
+		} else if (toDo.equals("mese")) {
 
+			Frame_RicercaMese frameMese = new Frame_RicercaMese();
+			frameMese.setSize(400, 300);
+			frameMese.setTitle("Ricerca per mese");
+			frameMese.setResizable(true);
+			frameMese.setVisible(true);
+		
+		}
+	}
 }
