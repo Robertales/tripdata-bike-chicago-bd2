@@ -26,6 +26,8 @@ public class Frame_RicercaBikeType extends JFrame implements ActionListener {
 
     private static final long serialVersionUID = 1L;
     private JComboBox comboBikeType;
+	private JComboBox comboMese;
+	private JComboBox comboGiorno;
 
     public Frame_RicercaBikeType() {
         super();
@@ -33,22 +35,66 @@ public class Frame_RicercaBikeType extends JFrame implements ActionListener {
         coll = DatabaseManager.getBike();
 
         JPanel contentPane = new JPanel();
-        contentPane.setBorder(BorderFactory.createEmptyBorder(10, 60, 10, 60));
-        contentPane.setLayout(new GridLayout(4, 0, 13, 13));
+        contentPane.setBorder(BorderFactory.createEmptyBorder(10, 40, 10, 40));
+        contentPane.setLayout(new GridLayout(6, 0, 13, 13));
 
         // ----------------------------------------------------------
 
         JPanel secondPanel = new JPanel();
-        secondPanel.setLayout(new GridLayout(2, 0));
-
-        comboBikeType = new JComboBox();
-        ArrayList<String> arrayResults = getArrayRiempimento("rideableType", coll);
+        secondPanel.setLayout(new GridLayout(3, 0));
         
-        for (int i = 0; i < arrayResults.size(); i++) {
-        	comboBikeType.addItem(arrayResults.get(i));
+        comboMese = new JComboBox<>();
+        comboGiorno = new JComboBox<>();
+        comboBikeType = new JComboBox();
+        ArrayList<Integer> arrayResultsMonth = getArrayRiempimentoInt("month", coll);
+        ArrayList<Integer> arrayResultsGiorno = getArrayRiempimentoInt("dayStart", coll);
+        ArrayList<String> arrayResultsBikeType = getArrayRiempimento("rideableType", coll);
+        
+        for (int i = 0; i < arrayResultsBikeType.size(); i++) {
+        	comboBikeType.addItem(arrayResultsBikeType.get(i));
+        }
+        for (int i = 0; i < arrayResultsMonth.size(); i++) {
+        	comboMese.addItem(arrayResultsMonth.get(i).toString());
         }
         comboBikeType.setSelectedIndex(0);
-
+        comboMese.setSelectedIndex(0);
+        secondPanel.add(new JLabel("Seleziona il mese:"));
+        secondPanel.add(comboMese);
+        comboMese.addActionListener (new ActionListener () {
+            public void actionPerformed(ActionEvent e) {
+                if (comboMese.getSelectedIndex() == 10 || comboMese.getSelectedIndex() == 3 || 
+                		comboMese.getSelectedIndex() == 5 || comboMese.getSelectedIndex() == 8) {
+                	comboGiorno.removeAllItems();
+                	for (int i = 0; i < arrayResultsGiorno.size(); i++) {
+                    	comboGiorno.addItem(arrayResultsGiorno.get(i).toString());
+                    	if (i==29) {
+                    		break;                    		
+                    	}
+                    }
+                } else if(comboMese.getSelectedIndex() == 1) {
+                	comboGiorno.removeAllItems();
+                	for (int i = 0; i < arrayResultsGiorno.size(); i++) {
+                		comboGiorno.addItem(arrayResultsGiorno.get(i).toString());
+                    	if (i==27) {
+                    		break;                    		
+                    	}
+                    }
+                	
+                } else if(comboMese.getSelectedIndex() == 0 || comboMese.getSelectedIndex() == 2 || 
+                		comboMese.getSelectedIndex() == 4 || comboMese.getSelectedIndex() == 6
+                		|| comboMese.getSelectedIndex() == 7 || comboMese.getSelectedIndex() == 9 || comboMese.getSelectedIndex() == 11) {
+                	comboGiorno.removeAllItems();
+                	for (int i = 0; i < arrayResultsGiorno.size(); i++) {
+                		comboGiorno.addItem(arrayResultsGiorno.get(i).toString());
+                    	if (i==30) {
+                    		break;                    		
+                    	}
+                    }
+                }
+            }
+        });	
+        secondPanel.add(new JLabel("Seleziona il giorno:"));
+        secondPanel.add(comboGiorno);
         secondPanel.add(new JLabel("Seleziona il tipo di bicicletta:"));
         secondPanel.add(comboBikeType);
 
@@ -56,7 +102,7 @@ public class Frame_RicercaBikeType extends JFrame implements ActionListener {
         JButton buttVai = new JButton("Vai");
         buttVai.addActionListener(this);
 
-        contentPane.add(new JLabel("Seleziona il tipo di ricerca:"));
+        contentPane.add(new JLabel("Seleziona il mese/giorno/tipo di bicicletta:"));
         
         contentPane.add(secondPanel);
         contentPane.add(buttVai);
@@ -66,7 +112,10 @@ public class Frame_RicercaBikeType extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String bikeType = comboBikeType.getItemAt(comboBikeType.getSelectedIndex()).toString();
-        Frame_BikeTypeResult result = new Frame_BikeTypeResult(bikeType);
+        String month = comboMese.getItemAt(comboMese.getSelectedIndex()).toString();
+        String giorno = comboGiorno.getItemAt(comboGiorno.getSelectedIndex()).toString();
+        
+        Frame_BikeTypeResult result = new Frame_BikeTypeResult(bikeType, month, giorno);
         result.setSize(1200, 500);
         result.setTitle("Results");
         result.setVisible(true);
@@ -77,6 +126,14 @@ public class Frame_RicercaBikeType extends JFrame implements ActionListener {
 
         ArrayList<String> results = new ArrayList<String>();
         results = collection.distinct(tipo, String.class).into(new ArrayList<String>());
+        Collections.sort(results);
+        return results;
+    }
+    
+    public ArrayList<Integer> getArrayRiempimentoInt(String tipo, MongoCollection<Document> collection) {
+
+        ArrayList<Integer> results = new ArrayList<Integer>();
+        results = collection.distinct(tipo, Integer.class).into(new ArrayList<Integer>());
         Collections.sort(results);
         return results;
     }

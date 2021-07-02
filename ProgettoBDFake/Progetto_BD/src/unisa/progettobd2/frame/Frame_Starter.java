@@ -97,7 +97,7 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		if (toDo.equals("bikeType")) {
 
 			Frame_RicercaBikeType frameInjury = new Frame_RicercaBikeType();
-			frameInjury.setSize(400, 300);
+			frameInjury.setSize(600, 500);
 			frameInjury.setTitle("Ricerca per tipo di bicicletta");
 			frameInjury.setResizable(true);
 			frameInjury.setVisible(true);

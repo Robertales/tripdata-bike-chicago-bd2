@@ -20,9 +20,11 @@ public class Frame_BikeTypeResult extends JFrame {
 
     private static final long serialVersionUID = 1L;
 
-    public Frame_BikeTypeResult(String bikeType) {
+    public Frame_BikeTypeResult(String bikeType, String month, String giorno) {
         super();
         Boolean found = false;
+        int mese = Integer.parseInt(month);
+        int day = Integer.parseInt(giorno);
         String[] colNames = {"ID", "Type", "Month", "DayStart", "HourStart", "Start Station Name", "DayEnd", "HourEnd", "End Station Name", "Member"};
 
         DefaultTableModel dtm = new DefaultTableModel();
@@ -38,7 +40,9 @@ public class Frame_BikeTypeResult extends JFrame {
 
         MongoCollection<Document> coll = DatabaseManager.getBike();
         Document docQuery = new Document().append("rideableType", bikeType);
-        coll.createIndex(Indexes.ascending("rideableType"));
+        docQuery.append("month", mese);
+        docQuery.append("dayStart", day);
+        coll.createIndex(Indexes.ascending("id"));
         if (coll != null) {
             FindIterable<Document> results = coll.find(docQuery);
             int c = 0;
