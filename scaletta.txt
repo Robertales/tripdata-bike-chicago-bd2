@@ -1,5 +1,5 @@
 1 bottone: combo box mese, combo box giorno, combo box tipo di bike
-2 bottone: radio button membro o non, combo box mese
+2 bottone: radio button membro o non, combo box mese .............fatto.........
 3 bottone: checkbox Mese, combobox mese,
     	   checkbox giorno, combobox giorno,
 	   checkbox hour, combobox hour da e combobox hour a,
