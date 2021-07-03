@@ -408,7 +408,7 @@ public class Frame_Aggregazione extends JFrame {
 
                         Frame_AggregazioneResult frame = new Frame_AggregazioneResult(results, colNames, colID);
                         frame.setLocationRelativeTo(null);
-                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         frame.setVisible(true);
                         Frame_Aggregazione.this.dispose();
 

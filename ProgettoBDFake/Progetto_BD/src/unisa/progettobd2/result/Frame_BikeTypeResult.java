@@ -69,9 +69,7 @@ public class Frame_BikeTypeResult extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         JLabel label = new JLabel("Trovati " + risultati + " risultati    ");
-        JButton btn = new JButton("Indietro");
         panel.add(label, BorderLayout.EAST);
-        panel.add(btn, BorderLayout.WEST);
 
 
         class clickButton implements ActionListener {
@@ -87,8 +85,6 @@ public class Frame_BikeTypeResult extends JFrame {
             }
         }
 
-        ActionListener listener = new clickButton();
-        btn.addActionListener(listener);
 
         return panel;
     }

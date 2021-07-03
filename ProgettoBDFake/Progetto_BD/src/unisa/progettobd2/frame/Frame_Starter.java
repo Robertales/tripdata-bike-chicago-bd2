@@ -45,7 +45,7 @@ public class Frame_Starter extends JFrame implements ActionListener {
 
 		contentPane.add(panel, BorderLayout.CENTER);
 		contentPane.add(new JLabel("Progetto BD2 - Trip in Bike for Chicago Dataset"), BorderLayout.PAGE_START);
-		contentPane.add(new JLabel("Gennaro Alessio Robertazzi & Emanuele Barberis"), BorderLayout.PAGE_END);
+		contentPane.add(new JLabel("\u00a9 Gennaro Alessio Robertazzi & Emanuele Barberis - June 2021"), BorderLayout.PAGE_END);
 
 		setContentPane(contentPane);
 		

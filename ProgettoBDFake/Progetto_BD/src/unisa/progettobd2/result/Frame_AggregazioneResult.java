@@ -64,15 +64,13 @@ public class Frame_AggregazioneResult extends JFrame {
         JLabel label = new JLabel("Trovati " + risultati + " risultati    ");
         JButton btn = new JButton("Indietro");
         panel.add(label, BorderLayout.EAST);
-        panel.add(btn, BorderLayout.WEST);
-
         class clickButton implements ActionListener {
 
             public void actionPerformed(ActionEvent e) {
 
                 Frame_Aggregazione start = new Frame_Aggregazione();
                 start.setSize(1000, 600);
-                start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                start.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 // start.setLocationRelativeTo(null);
                 start.setVisible(true);
                 Frame_AggregazioneResult.this.dispose();
@@ -80,7 +78,6 @@ public class Frame_AggregazioneResult extends JFrame {
         }
 
         ActionListener listener = new clickButton();
-        btn.addActionListener(listener);
 
         return panel;
     }

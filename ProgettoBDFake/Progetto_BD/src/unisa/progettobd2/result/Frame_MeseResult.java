@@ -82,9 +82,8 @@ public class Frame_MeseResult extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         JLabel label = new JLabel("Trovati " + risultati + " risultati    ");
-        JButton btn = new JButton("Indietro");
         panel.add(label, BorderLayout.EAST);
-        panel.add(btn, BorderLayout.WEST);
+        
 
         class clickButton implements ActionListener {
 
@@ -92,16 +91,14 @@ public class Frame_MeseResult extends JFrame {
 
                 Frame_RicercaMese start = new Frame_RicercaMese();
                 start.setSize(400, 300);
-                start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                start.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 // start.setLocationRelativeTo(null);
                 start.setVisible(true);
                 Frame_MeseResult.this.dispose();
             }
         }
 
-        ActionListener listener = new clickButton();
-        btn.addActionListener(listener);
-
+   
         return panel;
     }
 }
