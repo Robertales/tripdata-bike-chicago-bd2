@@ -5,18 +5,15 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.Dimension;
 
 public class Frame_Starter extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	public Frame_Starter() {
 		super();
-
+		
 		JButton buttRicercaAteneo = new JButton("Ricerca per tipo di bicicletta");
 		buttRicercaAteneo.setActionCommand("bikeType");
 		buttRicercaAteneo.addActionListener(this);
@@ -37,7 +34,7 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(5, 0, 20, 20));
 		panel.setBorder(BorderFactory.createEmptyBorder(20, 100, 20, 100));
-
+		
 		panel.add(buttRicercaAteneo);
 		panel.add(buttRicercaMese);
 		panel.add(buttGrafici);
@@ -47,9 +44,12 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		contentPane.setLayout(new BorderLayout());
 
 		contentPane.add(panel, BorderLayout.CENTER);
-		contentPane.add(new JLabel("Progetto BD2 - Bike Dataset"), BorderLayout.PAGE_START);
+		contentPane.add(new JLabel("Progetto BD2 - Trip in Bike for Chicago Dataset"), BorderLayout.PAGE_START);
+		contentPane.add(new JLabel("Gennaro Alessio Robertazzi & Emanuele Barberis"), BorderLayout.PAGE_END);
 
 		setContentPane(contentPane);
+		
+		
 
 	}
 /**
@@ -109,6 +109,7 @@ public class Frame_Starter extends JFrame implements ActionListener {
 			frameMese.setResizable(true);
 			frameMese.setVisible(true);
 		
+
 		}else if (toDo.equals("aggregazione")) {
 
 			Frame_Aggregazione frameMese = new Frame_Aggregazione();
@@ -117,6 +118,14 @@ public class Frame_Starter extends JFrame implements ActionListener {
 			frameMese.setResizable(true);
 			frameMese.setVisible(true);
 		
+
+		} else if (toDo.equals("grafici")) {
+			Frame_SceltaGrafico frameGrafico = new Frame_SceltaGrafico();
+			frameGrafico.setSize(500, 400);
+			frameGrafico.setTitle("Grafici");
+			frameGrafico.setResizable(true);
+			frameGrafico.setVisible(true);
+
 		}
 	}
 }
