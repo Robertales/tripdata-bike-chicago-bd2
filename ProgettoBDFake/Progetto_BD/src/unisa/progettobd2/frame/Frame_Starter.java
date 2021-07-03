@@ -101,11 +101,19 @@ public class Frame_Starter extends JFrame implements ActionListener {
 			frameInjury.setTitle("Ricerca per tipo di bicicletta");
 			frameInjury.setResizable(true);
 			frameInjury.setVisible(true);
-		} else if (toDo.equals("mese")) {
+		}else if (toDo.equals("mese")) {
 
 			Frame_RicercaMese frameMese = new Frame_RicercaMese();
 			frameMese.setSize(400, 300);
 			frameMese.setTitle("Ricerca per mese");
+			frameMese.setResizable(true);
+			frameMese.setVisible(true);
+		
+		}else if (toDo.equals("aggregazione")) {
+
+			Frame_Aggregazione frameMese = new Frame_Aggregazione();
+			frameMese.setSize(1000, 600);
+			frameMese.setTitle("Aggregazione");
 			frameMese.setResizable(true);
 			frameMese.setVisible(true);
 		

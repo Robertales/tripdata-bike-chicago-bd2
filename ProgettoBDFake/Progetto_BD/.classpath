@@ -8,6 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="mongo-java-driver-3.7.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Gennaro/Desktop/Personal/tripdata-bike-chicago-bd2/ProgettoBDFake/Progetto_BD/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>
+	<classpathentry kind="lib" path="C:/Users/emanu/Documents/GitHub/tripdata-bike-chicago-bd2/ProgettoBDFake/Progetto_BD/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

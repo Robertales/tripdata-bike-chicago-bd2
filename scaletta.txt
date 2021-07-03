@@ -5,6 +5,7 @@
 	   checkbox hour, combobox hour da e combobox hour a,
 	   checkbox stazione partenza, combobox stazione partenza,
 	   checkbox stazione arrivo, combobox stazione arrivo,
-	   checkbox membro, combobox memrbro/casual
+	   checkbox biketype, combobox biktype,
+	   checkbox membro, combobox membro/casual
    	    
 4 bottone: grafico per ogni mese, grafico orario, grafico per ogni tipo
