@@ -68,9 +68,17 @@ public class Frame_GraficoResult extends JFrame {
 
 			
 			
-		} else {
+		} else if (tipoGrafico.equals("rideableType"))  {
 			ArrayList<String> array = new ArrayList<String>();
 			array = coll.distinct(tipoGrafico, String.class).into(new ArrayList<String>());
+			Collections.sort(array);
+			for (int i = 0; i < array.size(); i++) {
+				query = new Document().append(tipoGrafico, array.get(i));
+				dataset.addValue(coll.count(query), "dato", array.get(i));
+			}
+		} else if (tipoGrafico.equals("month"))  {
+			ArrayList<Integer> array = new ArrayList<Integer>();
+			array = coll.distinct(tipoGrafico, Integer.class).into(new ArrayList<Integer>());
 			Collections.sort(array);
 			for (int i = 0; i < array.size(); i++) {
 				query = new Document().append(tipoGrafico, array.get(i));

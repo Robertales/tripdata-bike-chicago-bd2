@@ -79,7 +79,7 @@ public class Frame_BikeTypeResult extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
             	Frame_RicercaBikeType start = new Frame_RicercaBikeType();
-                start.setSize(400, 300);
+                start.setSize(600, 500);
                 start.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 // start.setLocationRelativeTo(null);
                 start.setVisible(true);
