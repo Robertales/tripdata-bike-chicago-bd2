@@ -2,6 +2,7 @@ package unisa.progettobd2.frame;
 
 
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import com.mongodb.client.MongoCollection;
 
 import unisa.progettobd2.result.Frame_MeseResult;
 import unisa.progettobd2.service.DatabaseManager;
+import unisa.progettobd2.starter.Starter;
 
 public class Frame_RicercaMese extends JFrame implements ActionListener {
 
@@ -69,14 +71,14 @@ public class Frame_RicercaMese extends JFrame implements ActionListener {
 		
 		comboMese.setSelectedIndex(0);
 
-		secondPanel.add(new JLabel("Seleziona mesi da ricercare:"));
+		secondPanel.add(new JLabel("Seleziona il mese:"));
 		secondPanel.add(comboMese);
 
 		// ----------------------------------------------------------------------------------
 		JButton buttVai = new JButton("Vai");
 		buttVai.addActionListener(this);
 
-		contentPane.add(new JLabel("Seleziona il tipo di ricerca:"));
+		contentPane.add(new JLabel("Seleziona tra casual o membership:"));
 		contentPane.add(radioPanel);
 		;
 		contentPane.add(secondPanel);
@@ -95,6 +97,7 @@ public class Frame_RicercaMese extends JFrame implements ActionListener {
 			tipo = "Casual";
 
 		Frame_MeseResult result = new Frame_MeseResult(tipo, mese);
+		result.setIconImage(Toolkit.getDefaultToolkit().getImage(Starter.class.getResource("/image/bike3_2.png")));
 		result.setSize(1200, 500);
 		result.setTitle("Results");
 		result.setVisible(true);

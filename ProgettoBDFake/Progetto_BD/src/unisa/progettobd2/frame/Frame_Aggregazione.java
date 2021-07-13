@@ -14,6 +14,8 @@ import org.bson.BsonDocument;
 import org.bson.BsonString;
 import org.bson.Document;
 import org.bson.conversions.Bson;
+
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.BsonField;
@@ -22,6 +24,7 @@ import com.mongodb.client.model.Indexes;
 
 import unisa.progettobd2.result.Frame_AggregazioneResult;
 import unisa.progettobd2.service.DatabaseManager;
+import unisa.progettobd2.starter.Starter;
 
 public class Frame_Aggregazione extends JFrame {
 
@@ -31,10 +34,10 @@ public class Frame_Aggregazione extends JFrame {
     private ArrayList<String> colID;
     private ArrayList<String> colNames;
 
-    private JCheckBox checkMonth, checkDay, checkHourStart, checkStazioneStart, checkStazioneEnd, checkBikeType, checkMember;
+    private JCheckBox checkMonth, checkDay, checkHourStartDa, checkHourStartA, checkHourEndDa, checkHourEndA, checkStazioneStart, checkStazioneEnd, checkBikeType, checkMember;
 
 
-    private JComboBox comboMonth, comboDay, comboHourStart, comboHourEnd, comboStazioneStart, comboStazioneEnd, comboBikeType, comboMember;
+    private JComboBox comboMonth, comboDay, comboHourStartDa, comboHourStartA, comboHourEndDa, comboHourEndA, comboStazioneStart, comboStazioneEnd, comboBikeType, comboMember;
 
     private MongoCollection<Document> coll_full;
 
@@ -70,11 +73,12 @@ public class Frame_Aggregazione extends JFrame {
 
     public JPanel createQueryPanel() {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(9, 1));
+        panel.setLayout(new GridLayout(8, 1));
 
         JPanel month = createMonthPanel();
         JPanel day = createDayPanel();
-        JPanel hourStart = createHourPanel();
+        JPanel hourStart = createHourPanelStart();
+        JPanel hourEnd = createHourPanelEnd();
         //JPanel hourEnd = createHourEndPanel();
         JPanel stationStart = checkStazioneStartPanel();
         JPanel stationEnd = checkStazioneEndPanel();
@@ -84,7 +88,7 @@ public class Frame_Aggregazione extends JFrame {
         panel.add(month);
         panel.add(day);
         panel.add(hourStart);
-        //panel.add(hourEnd);
+        panel.add(hourEnd);
         panel.add(stationStart);
         panel.add(stationEnd);
         panel.add(bikeType);
@@ -167,32 +171,65 @@ public class Frame_Aggregazione extends JFrame {
     }
       
 
-    public JPanel createHourPanel() {
+    public JPanel createHourPanelStart() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(2, 4));
 
-        checkHourStart = new JCheckBox("Hour");
-        comboHourStart = new JComboBox();
-        comboHourEnd = new JComboBox();
+        checkHourStartDa = new JCheckBox("Hour Start da");
+        checkHourStartA = new JCheckBox("Hour Start a");
+        comboHourStartDa = new JComboBox();
+        comboHourStartA = new JComboBox();
         JLabel label = new JLabel();
         ArrayList<String> arrayResultsHourStart = getArrayRiempimento("hourStart", coll_full);
         for (int i = 0; i < arrayResultsHourStart.size(); i++) {
-            comboHourStart.addItem(arrayResultsHourStart.get(i));
+        	comboHourStartDa.addItem(arrayResultsHourStart.get(i));
+        }
+
+        ArrayList<String> arrayResultsHourEnd = getArrayRiempimento("hourStart", coll_full);
+        for (int i = 0; i < arrayResultsHourEnd.size(); i++) {
+        	comboHourStartA.addItem(arrayResultsHourEnd.get(i));
+        }
+        
+        comboHourStartDa.setEnabled(false);
+        checkHourStartDa.addActionListener(checkListener);
+        comboHourStartA.setEnabled(false);
+        checkHourStartA.addActionListener(checkListener);
+        
+        panel.add(checkHourStartDa);
+        panel.add(comboHourStartDa);
+        panel.add(checkHourStartA);
+        panel.add(comboHourStartA);
+        return panel;
+    }
+    
+    public JPanel createHourPanelEnd() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2, 4));
+
+        checkHourEndDa = new JCheckBox("Hour End da:");
+        checkHourEndA = new JCheckBox("Hour End a:");
+        comboHourEndDa = new JComboBox();
+        comboHourEndA = new JComboBox();
+        JLabel label = new JLabel();
+        ArrayList<String> arrayResultsHourStart = getArrayRiempimento("hourEnd", coll_full);
+        for (int i = 0; i < arrayResultsHourStart.size(); i++) {
+        	comboHourEndDa.addItem(arrayResultsHourStart.get(i));
         }
 
         ArrayList<String> arrayResultsHourEnd = getArrayRiempimento("hourEnd", coll_full);
         for (int i = 0; i < arrayResultsHourEnd.size(); i++) {
-            comboHourEnd.addItem(arrayResultsHourEnd.get(i));
+        	comboHourEndA.addItem(arrayResultsHourEnd.get(i));
         }
         
-        comboHourStart.setEnabled(false);
-        checkHourStart.addActionListener(checkListener);
-        comboHourEnd.setEnabled(false);
+        comboHourEndDa.setEnabled(false);
+        checkHourEndDa.addActionListener(checkListener);
+        comboHourEndA.setEnabled(false);
+        checkHourEndA.addActionListener(checkListener);
         
-        panel.add(checkHourStart);
-        panel.add(comboHourStart);
-        panel.add(label);
-        panel.add(comboHourEnd);
+        panel.add(checkHourEndDa);
+        panel.add(comboHourEndDa);
+        panel.add(checkHourEndA);
+        panel.add(comboHourEndA);
         return panel;
     }
     
@@ -313,19 +350,52 @@ public class Frame_Aggregazione extends JFrame {
             }
         }
 
-        if (checkHourStart.isSelected()) {
+        if (checkHourStartDa.isSelected()) {
             flagSelezionato = true;
             colNames.add("HourStart");
             colID.add("hourStart");
+            if (checkHourStartA.isSelected()) {
+            	if (!(comboHourStartDa.getSelectedItem().equals("")) && !(comboHourStartA.getSelectedItem().equals(""))) {
+                    filters.add(Aggregates.match(Filters.gte("hourStart", comboHourStartDa.getSelectedItem())));
+                    filters.add(Aggregates.match(Filters.lte("hourStart", comboHourStartA.getSelectedItem())));
+                    coll_full.createIndex(Indexes.ascending("hourStart"));
+                }
+            } else if (!(checkHourStartA.isSelected()) && !(checkHourEndA.isSelected()) && !(checkHourEndDa.isSelected())){
+            	if (!(comboHourStartDa.getSelectedItem().equals(""))) {
+                    filters.add(Aggregates.match(Filters.gte("hourStart", comboHourStartDa.getSelectedItem())));
+                    coll_full.createIndex(Indexes.ascending("hourStart"));
+                }
+            } else if (checkHourEndA.isSelected() && !(checkHourStartA.isSelected()) && !(checkHourEndDa.isSelected())){
+            	if (!(comboHourStartDa.getSelectedItem().equals("")) && !(comboHourEndA.getSelectedItem().equals(""))) {
+            		colNames.add("HourEnd");
+                    colID.add("hourEnd");
+                    filters.add(Aggregates.match(Filters.gte("hourStart", comboHourStartDa.getSelectedItem())));
+                    filters.add(Aggregates.match(Filters.lte("hourEnd", comboHourEndA.getSelectedItem())));
+                    coll_full.createIndex(Indexes.ascending("hourStart"));
+                }
+            }
+            
+        }
+        
+        if (checkHourEndDa.isSelected()) {
+            flagSelezionato = true;
             colNames.add("HourEnd");
             colID.add("hourEnd");
-            if (!(comboHourStart.getSelectedItem().equals(""))) {
-                filters.add(Aggregates.match(Filters.eq("hourStart", comboHourStart.getSelectedItem())));
-                coll_full.createIndex(Indexes.ascending("hourStart"));
-                filters.add(Aggregates.match(Filters.eq("hourEnd", comboHourEnd.getSelectedItem())));
-                coll_full.createIndex(Indexes.ascending("hourEnd"));
+            if (checkHourEndA.isSelected()) {
+            	if (!(comboHourEndDa.getSelectedItem().equals("")) && !(comboHourEndA.getSelectedItem().equals(""))) {
+                    filters.add(Aggregates.match(Filters.gte("hourEnd", comboHourEndDa.getSelectedItem())));
+                    filters.add(Aggregates.match(Filters.lte("hourEnd", comboHourEndA.getSelectedItem())));
+                    coll_full.createIndex(Indexes.ascending("hourEnd"));
+                }
+            } else if (!(checkHourEndA.isSelected())) {
+            	if (!(comboHourEndDa.getSelectedItem().equals(""))) {
+                    filters.add(Aggregates.match(Filters.gte("hourEnd", comboHourEndDa.getSelectedItem())));
+                    coll_full.createIndex(Indexes.ascending("hourEnd"));
+                }
             }
+            
         }
+        
 
 
         if (checkStazioneStart.isSelected()) {
@@ -407,6 +477,7 @@ public class Frame_Aggregazione extends JFrame {
                         System.out.println(results);
 
                         Frame_AggregazioneResult frame = new Frame_AggregazioneResult(results, colNames, colID);
+                        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Starter.class.getResource("/image/bike3_2.png")));
                         frame.setLocationRelativeTo(null);
                         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         frame.setVisible(true);
@@ -458,15 +529,25 @@ public class Frame_Aggregazione extends JFrame {
             else
             	comboDay.setEnabled(false);
 
-            if (checkHourStart.isSelected())
-            	comboHourStart.setEnabled(true);
+            if (checkHourStartDa.isSelected())
+            	comboHourStartDa.setEnabled(true);
             else
-            	comboHourStart.setEnabled(false);
+            	comboHourStartDa.setEnabled(false);
             
-            if (checkHourStart.isSelected())
-            	comboHourEnd.setEnabled(true);
+            if (checkHourStartA.isSelected())
+            	comboHourStartA.setEnabled(true);
             else
-            	comboHourEnd.setEnabled(false);
+            	comboHourStartA.setEnabled(false);
+            
+            if (checkHourEndDa.isSelected())
+            	comboHourEndDa.setEnabled(true);
+            else
+            	comboHourEndDa.setEnabled(false);
+            
+            if (checkHourEndA.isSelected())
+            	comboHourEndA.setEnabled(true);
+            else
+            	comboHourEndA.setEnabled(false);
             
             if (checkStazioneStart.isSelected())
             	comboStazioneStart.setEnabled(true);
@@ -487,6 +568,40 @@ public class Frame_Aggregazione extends JFrame {
                 comboMember.setEnabled(true);
             else
             	comboMember.setEnabled(false);
+            
+            if (checkHourStartDa.isSelected() && checkHourStartA.isSelected() && checkHourEndDa.isSelected() && checkHourEndA.isSelected()) {
+            	comboHourStartDa.setEnabled(false);
+            	comboHourStartA.setEnabled(false);
+            	comboHourEndDa.setEnabled(false);
+            	comboHourEndA.setEnabled(false);
+            }
+            
+            if (checkHourStartDa.isSelected() && checkHourEndDa.isSelected() && checkHourEndA.isSelected()) {
+            	comboHourStartDa.setEnabled(false);
+            	comboHourEndDa.setEnabled(false);
+            	comboHourEndA.setEnabled(false);
+            }
+            
+            if (checkHourStartA.isSelected() && checkHourEndDa.isSelected() && checkHourEndA.isSelected()) {
+            	comboHourStartA.setEnabled(false);
+            	comboHourEndDa.setEnabled(false);
+            	comboHourEndA.setEnabled(false);
+            }
+            
+            if (checkHourStartDa.isSelected() && checkHourStartA.isSelected() && checkHourEndDa.isSelected()) {
+            	comboHourStartDa.setEnabled(false);
+            	comboHourStartA.setEnabled(false);
+            	comboHourEndDa.setEnabled(false);
+            }
+            if (checkHourStartDa.isSelected() && checkHourStartA.isSelected() && checkHourEndA.isSelected()) {
+            	comboHourStartDa.setEnabled(false);
+            	comboHourStartDa.setEnabled(false);
+            	comboHourEndA.setEnabled(false);
+            }
+            if (checkHourStartA.isSelected() && checkHourEndA.isSelected()) {
+            	comboHourStartA.setEnabled(false);
+            	comboHourEndA.setEnabled(false);
+            }
 
         }
     }

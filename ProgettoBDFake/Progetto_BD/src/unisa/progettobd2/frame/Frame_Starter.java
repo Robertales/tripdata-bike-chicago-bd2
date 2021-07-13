@@ -2,10 +2,14 @@ package unisa.progettobd2.frame;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import unisa.progettobd2.starter.Starter;
+
 import java.awt.Dimension;
 
 public class Frame_Starter extends JFrame implements ActionListener {
@@ -13,7 +17,6 @@ public class Frame_Starter extends JFrame implements ActionListener {
 
 	public Frame_Starter() {
 		super();
-		
 		JButton buttRicercaAteneo = new JButton("Ricerca per tipo di bicicletta");
 		buttRicercaAteneo.setActionCommand("bikeType");
 		buttRicercaAteneo.addActionListener(this);
@@ -44,7 +47,7 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		contentPane.setLayout(new BorderLayout());
 
 		contentPane.add(panel, BorderLayout.CENTER);
-		contentPane.add(new JLabel("Progetto BD2 - Trip in Bike for Chicago Dataset"), BorderLayout.PAGE_START);
+		contentPane.add(new JLabel("Progetto BD2 - Bike Sharing a Chicago - 2020"), BorderLayout.PAGE_START);
 		contentPane.add(new JLabel("\u00a9 Gennaro Alessio Robertazzi & Emanuele Barberis - June 2021"), BorderLayout.PAGE_END);
 
 		setContentPane(contentPane);
@@ -97,6 +100,7 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		if (toDo.equals("bikeType")) {
 
 			Frame_RicercaBikeType frameInjury = new Frame_RicercaBikeType();
+			frameInjury.setIconImage(Toolkit.getDefaultToolkit().getImage(Starter.class.getResource("/image/bike3_2.png")));
 			frameInjury.setSize(600, 500);
 			frameInjury.setTitle("Ricerca per tipo di bicicletta");
 			frameInjury.setResizable(true);
@@ -104,6 +108,7 @@ public class Frame_Starter extends JFrame implements ActionListener {
 		}else if (toDo.equals("mese")) {
 
 			Frame_RicercaMese frameMese = new Frame_RicercaMese();
+			frameMese.setIconImage(Toolkit.getDefaultToolkit().getImage(Starter.class.getResource("/image/bike3_2.png")));
 			frameMese.setSize(400, 300);
 			frameMese.setTitle("Ricerca per mese");
 			frameMese.setResizable(true);
@@ -112,15 +117,17 @@ public class Frame_Starter extends JFrame implements ActionListener {
 
 		}else if (toDo.equals("aggregazione")) {
 
-			Frame_Aggregazione frameMese = new Frame_Aggregazione();
-			frameMese.setSize(1000, 600);
-			frameMese.setTitle("Aggregazione");
-			frameMese.setResizable(true);
-			frameMese.setVisible(true);
+			Frame_Aggregazione frameAggr = new Frame_Aggregazione();
+			frameAggr.setIconImage(Toolkit.getDefaultToolkit().getImage(Starter.class.getResource("/image/bike3_2.png")));
+			frameAggr.setSize(1000, 600);
+			frameAggr.setTitle("Aggregazione");
+			frameAggr.setResizable(true);
+			frameAggr.setVisible(true);
 		
 
 		} else if (toDo.equals("grafici")) {
 			Frame_SceltaGrafico frameGrafico = new Frame_SceltaGrafico();
+			frameGrafico.setIconImage(Toolkit.getDefaultToolkit().getImage(Starter.class.getResource("/image/bike3_2.png")));
 			frameGrafico.setSize(500, 400);
 			frameGrafico.setTitle("Grafici");
 			frameGrafico.setResizable(true);

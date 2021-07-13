@@ -1,6 +1,7 @@
 package unisa.progettobd2.frame;
 
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import com.mongodb.client.MongoCollection;
 
 import unisa.progettobd2.result.Frame_BikeTypeResult;
 import unisa.progettobd2.service.DatabaseManager;
+import unisa.progettobd2.starter.Starter;
 
 public class Frame_RicercaBikeType extends JFrame implements ActionListener {
 
@@ -116,6 +118,7 @@ public class Frame_RicercaBikeType extends JFrame implements ActionListener {
         String giorno = comboGiorno.getItemAt(comboGiorno.getSelectedIndex()).toString();
         
         Frame_BikeTypeResult result = new Frame_BikeTypeResult(bikeType, month, giorno);
+        result.setIconImage(Toolkit.getDefaultToolkit().getImage(Starter.class.getResource("/image/bike3_2.png")));
         result.setSize(1200, 500);
         result.setTitle("Results");
         result.setVisible(true);

@@ -61,6 +61,7 @@ public class Frame_Aggregazione extends JFrame {
     }
 
     public JPanel createMainPanel() {
+    	
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
         JPanel query = createQueryPanel();

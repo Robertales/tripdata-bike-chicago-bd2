@@ -2,6 +2,7 @@ package unisa.progettobd2.frame;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
@@ -10,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import unisa.progettobd2.result.Frame_GraficoResult;
+import unisa.progettobd2.starter.Starter;
 
 public class Frame_SceltaGrafico extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -55,11 +57,12 @@ public class Frame_SceltaGrafico extends JFrame implements ActionListener {
 		if (toDo.equals("graficoMese")) {
 
 			String title = "Grafico prova";
-			String chartTitle = "Bici usate per mese";
+			String chartTitle = "Istogramma bici usate per mese";
 
 			Frame_GraficoResult frame = new Frame_GraficoResult(title, chartTitle, "month");
+			frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Starter.class.getResource("/image/bike3_2.png")));
 			frame.setSize(1000, 1000);
-			frame.setTitle("Grafico  bici usate per mese");
+			frame.setTitle("Grafico bici usate per mese");
 
 			frame.setVisible(true);
 
@@ -69,6 +72,7 @@ public class Frame_SceltaGrafico extends JFrame implements ActionListener {
 			String chartTitle = "Istogramma corse per ora";
 
 			Frame_GraficoResult frame = new Frame_GraficoResult(title, chartTitle, "hourStart");
+			frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Starter.class.getResource("/image/bike3_2.png")));
 
 			frame.setSize(1200, 1000);
 			frame.setTitle("Grafico numero corse per ora");
@@ -81,6 +85,7 @@ public class Frame_SceltaGrafico extends JFrame implements ActionListener {
 			String chartTitle = "Istogramma in base al tipo di bici utilizzate";
 
 			Frame_GraficoResult frame = new Frame_GraficoResult(title, chartTitle, "rideableType");
+			frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Starter.class.getResource("/image/bike3_2.png")));
 
 			frame.setSize(1000, 700);
 			frame.setTitle("Grafico per tipologia di bici utilizzate");
