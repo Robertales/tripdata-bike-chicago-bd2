@@ -60,7 +60,6 @@ public class Frame_GraficoResult extends JFrame {
 					sum+=coll.count(arrayMinuti.get(i));	
 				}
 				
-				System.out.println(sum);
 				
 				dataset.addValue(sum, "dato", arrayOra.get(c));
 				arrayMinuti.clear();

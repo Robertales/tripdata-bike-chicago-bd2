@@ -65,7 +65,7 @@ public class Frame_RicercaMese extends JFrame implements ActionListener {
 			
 		}
 		
-		System.out.println(arrayResults.size());
+		
 		
 		comboMese.setSelectedIndex(0);
 
