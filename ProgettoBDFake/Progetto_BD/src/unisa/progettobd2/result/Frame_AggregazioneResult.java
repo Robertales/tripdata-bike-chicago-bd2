@@ -43,7 +43,7 @@ public class Frame_AggregazioneResult extends JFrame {
         JScrollPane scrollText = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         add(scrollText);
-//stampa
+        
         for (Document temp : risultati) {
 
             Object[] elemento = new Object[colonneID.size() + 1];

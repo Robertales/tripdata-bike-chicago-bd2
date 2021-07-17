@@ -423,7 +423,7 @@ public class Frame_Aggregazione extends JFrame {
         
         if (checkBikeType.isSelected()) {
             flagSelezionato = true;
-            colNames.add("Member");
+            colNames.add("BikeType");
             colID.add("rideableType");
             if (!(comboBikeType.getSelectedItem().equals(""))) {
                 filters.add(Aggregates.match(Filters.eq("rideableType", comboBikeType.getSelectedItem())));

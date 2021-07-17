@@ -41,12 +41,9 @@ public class Frame_GraficoResult extends JFrame {
 		coll = DatabaseManager.getBike();
 		dataset = new DefaultCategoryDataset();
 		if (tipoGrafico.equals("hourStart")) {
-			
 			ArrayList<String> array = new ArrayList<String>();
-			
 			array = coll.distinct(tipoGrafico, String.class).into(new ArrayList<String>());
 			Collections.sort(array);
-			
 			for (int c = 0; c < arrayOra.size(); c++) {
 				for (int i = 0; i < array.size(); i++) {
 					if (Integer.parseInt(arrayOra.get(c))==Integer.parseInt(array.get(i).split(":")[0])) {
@@ -54,19 +51,13 @@ public class Frame_GraficoResult extends JFrame {
 						arrayMinuti.add(query);
 					}
 				}
-				
 				int sum = 0;
 				for (int i = 0; i < arrayMinuti.size(); i++) {
 					sum+=coll.count(arrayMinuti.get(i));	
 				}
-				
-				
 				dataset.addValue(sum, "dato", arrayOra.get(c));
 				arrayMinuti.clear();
 			}
-
-			
-			
 		} else if (tipoGrafico.equals("rideableType"))  {
 			ArrayList<String> array = new ArrayList<String>();
 			array = coll.distinct(tipoGrafico, String.class).into(new ArrayList<String>());
