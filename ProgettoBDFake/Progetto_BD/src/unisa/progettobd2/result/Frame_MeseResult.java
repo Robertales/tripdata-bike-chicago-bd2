@@ -62,8 +62,10 @@ public class Frame_MeseResult extends JFrame {
             for (Document temp : results) {
                 c++;
                 found = true;
-                dtm.addRow(new Object[]{temp.getInteger("id"), temp.getString("rideableType"), temp.getInteger("month"), temp.getInteger("dayStart"), temp.getString("hourStart"),
-                		temp.getString("startStationName"), temp.getInteger("dayEnd"), temp.getString("hourEnd"), temp.getString("endStationName"), temp.getString("memberCasual")});
+                dtm.addRow(new Object[]{temp.getInteger("id"), temp.getString("rideableType"), temp.getInteger("month"), 
+                		temp.getInteger("dayStart"), temp.getString("hourStart"), temp.getString("startStationName"), 
+                		temp.getInteger("dayEnd"), temp.getString("hourEnd"), 
+                		temp.getString("endStationName"), temp.getString("memberCasual")});
             }
 
 

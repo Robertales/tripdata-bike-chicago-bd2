@@ -49,8 +49,10 @@ public class Frame_BikeTypeResult extends JFrame {
             for (Document temp : results) {
                 found = true;
                 c++;
-                dtm.addRow(new Object[]{temp.getInteger("id"), temp.getString("rideableType"), temp.getInteger("month"), temp.getInteger("dayStart"), temp.getString("hourStart"),
-                		temp.getString("startStationName"), temp.getInteger("dayEnd"), temp.getString("hourEnd"), temp.getString("endStationName"), temp.getString("memberCasual")});
+                dtm.addRow(new Object[]{temp.getInteger("id"), temp.getString("rideableType"), temp.getInteger("month"), 
+                		temp.getInteger("dayStart"), temp.getString("hourStart"), temp.getString("startStationName"), 
+                		temp.getInteger("dayEnd"), temp.getString("hourEnd"), 
+                		temp.getString("endStationName"), temp.getString("memberCasual")});
             }
 
             if (!found)
