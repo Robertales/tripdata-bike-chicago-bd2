@@ -53,7 +53,7 @@ public class Frame_MeseResult extends JFrame {
         	
         }
 
-        coll.createIndex(Indexes.ascending("month"));
+        coll.createIndex(Indexes.ascending("id"));
 
         if (coll != null) {
             FindIterable<Document> results = coll.find(docQuery);

@@ -29,7 +29,7 @@ public class Frame_GraficoResult extends JFrame {
 
 	public Frame_GraficoResult(String applicationTitle, String chartTitle, String tipo) {
 		super(applicationTitle);
-		JFreeChart barChart = ChartFactory.createBarChart(chartTitle, tipo, "Biciclette", createDataset(tipo),
+		JFreeChart barChart = ChartFactory.createBarChart(chartTitle, tipo, "Corse", createDataset(tipo),
 				PlotOrientation.VERTICAL, true, true, false);
 
 		ChartPanel chartPanel = new ChartPanel(barChart);
